@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_purple"
+    >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+
+    tools:context=".DetailsActivity">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height= "200dp"
+        android:id="@+id/img"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/content"
+        android:elevation="2dp"
+        android:scaleType="fitXY"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:onClick="storeOrDelete"
+        android:id="@+id/starImgView"
+        android:contentDescription="@string/star"
+         android:layout_gravity="center"
+
+        />
+    <TextView
+        style="@style/AppTheme.label"
+        android:text="@string/detailTitle"
+        />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        style="@style/AppTheme.data"
+         />
+
+    <TextView
+        style="@style/AppTheme.label"
+        android:text="@string/detailVote"
+        />
+
+
+    <TextView
+        android:id="@+id/vote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        style="@style/AppTheme.data"
+         />
+
+    <TextView
+        style="@style/AppTheme.label"
+        android:text="@string/detailRelease"
+        />
+
+    <TextView
+        android:id="@+id/release"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        style="@style/AppTheme.data"
+         />
+
+    <TextView
+        style="@style/AppTheme.label"
+        android:text="@string/detailOverview"
+        />
+
+    <TextView
+        android:id="@+id/overview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/AppTheme.data"
+        android:textAlignment="center"
+        />
+
+    <TextView
+        android:id="@+id/trailerLabel_tv"
+        style="@style/AppTheme.label"
+        android:text="@string/trailerLabel"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/trailerRecView"
+        android:layout_marginTop="10dp"
+        >
+
+    </android.support.v7.widget.RecyclerView>
+        <TextView
+            android:id="@+id/revLabel_tv"
+            style="@style/AppTheme.label"
+            android:text="@string/reviewLabel"
+            />
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rev_recView"
+        android:layout_marginTop="10dp"
+        >
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>
+</ScrollView>

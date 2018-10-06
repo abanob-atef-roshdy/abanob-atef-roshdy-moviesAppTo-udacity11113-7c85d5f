@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Movies App</string>
+    <string name="menuSettingsTitle">settings</string>
+    <string name="menuDetailsTitle">details</string>
+    <string name="listDefValue">popular</string>
+    <string name="listKey">SortBy</string>
+    <string name="listTitle">Sort by</string>
+    <string name="listEntry1">Popular</string>
+    <string name="listEntry2">Top rated</string>
+    <string name="listEntry3">Favourites</string>
+    <string name="listEntryVal1" translatable="false">popular</string>
+    <string name="listEntryVal2" translatable="false">topRated</string>
+    <string name="listEntryVal3" translatable="false">favourite</string>
+    <string name="urlKey" translatable="false">url</string>
+    <string name="releaseKey" translatable="false">released</string>
+    <string name="voteKey" translatable="false">vote</string>
+    <string name="titleKey" translatable="false">title</string>
+    <string name="overviewKey" translatable="false">overview</string>
+
+    <string name="detailTitle">Title</string>
+    <string name="detailVote">Vote</string>
+    <string name="detailRelease">Released in</string>
+    <string name="detailOverview">Story about</string>
+    <string name="authorLabel">Author</string>
+    <string name="trailerLabel">Trailer</string>
+    <string name="reviewLabel">Reviews</string>
+    <string name="menu">Details</string>
+    <string name="content">film picture</string>
+    <string name="star">add or delete from favourites list</string>
+
+</resources>

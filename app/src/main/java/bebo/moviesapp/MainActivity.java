@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Parcelable;
 import android.preference.Preference;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -42,6 +44,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.Inflater;
@@ -49,6 +52,7 @@ import java.util.zip.Inflater;
 public class MainActivity extends AppCompatActivity implements ImageAdapter.ImageClickHandler,SharedPreferences.OnSharedPreferenceChangeListener {
 
 
+    int flag;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -74,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements ImageAdapter.Imag
     private ImageAdapter imageAdapter;
     AppDataBase mDb;
     String url;
+    Parcelable listState;
+    GridLayoutManager gridLayoutManager;
 
     @Override
     protected void onDestroy() {
@@ -87,19 +93,52 @@ public class MainActivity extends AppCompatActivity implements ImageAdapter.Imag
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.recView);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,calculateNoOfColumns(this));
+        gridLayoutManager = new GridLayoutManager(this,calculateNoOfColumns(this));
         gridLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setHasFixedSize(true);
         movieList = new ArrayList<>();
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if(savedInstanceState != null){
+            listState = savedInstanceState.getParcelable("f");
+            gridLayoutManager.onRestoreInstanceState(listState);
+            movieList = savedInstanceState.getParcelableArrayList("list");
+            flag = savedInstanceState.getInt("fav");
+            if(flag == 1)
+            {
+                retFromDb();
+            }
 
-         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        loadData(sharedPreferences);
+        }
+        else {
+
+
+            loadData(sharedPreferences);
+        }
         imageAdapter = new ImageAdapter(movieList,getApplicationContext(), this);
         recyclerView.setAdapter(imageAdapter);
         mDb = AppDataBase.getsInstance(getApplicationContext());
-       retFromDb();
+      // retFromDb();
+
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        listState = gridLayoutManager.onSaveInstanceState();
+        outState.putParcelable("f",listState);
+        outState.putSerializable("list", (Serializable) movieList);
+        outState.putInt("fav", flag);
+    }
+
+ /*   @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState != null){
+           listState= savedInstanceState.getParcelable("f");
+        }
+    }*/
+
     public  int calculateNoOfColumns(Context context) {
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
@@ -161,11 +200,17 @@ public class MainActivity extends AppCompatActivity implements ImageAdapter.Imag
 
         String sort = sharedPreferences.getString(getString(R.string.listKey),getString(R.string.listDefValue));
         if(sort.equals("popular")) {
+            flag = 0;
              url = "https://api.themoviedb.org/3/movie/popular?api_key=";
         }
         else if (sort.equals("topRated")){
-
+            flag = 0;
              url = "https://api.themoviedb.org/3/movie/top_rated?api_key=";
+        }
+        else {
+            url = "";
+            flag = 1;
+            retFromDb();
         }
 
 return url;
@@ -210,6 +255,25 @@ return url;
             loadData(sharedPreferences);
         }
 
+        if(listState != null){
+
+            gridLayoutManager.onRestoreInstanceState(listState);
+        }
+
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+
+    }
 }

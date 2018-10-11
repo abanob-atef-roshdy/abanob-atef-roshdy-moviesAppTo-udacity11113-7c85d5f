@@ -201,11 +201,11 @@ public class MainActivity extends AppCompatActivity implements ImageAdapter.Imag
         String sort = sharedPreferences.getString(getString(R.string.listKey),getString(R.string.listDefValue));
         if(sort.equals("popular")) {
             flag = 0;
-             url = "https://api.themoviedb.org/3/movie/popular?api_key=9210a90684bb5c798a69dcc6f9ba6889";
+             url = "https://api.themoviedb.org/3/movie/popular?api_key=";
         }
         else if (sort.equals("topRated")){
             flag = 0;
-             url = "https://api.themoviedb.org/3/movie/top_rated?api_key=9210a90684bb5c798a69dcc6f9ba6889";
+             url = "https://api.themoviedb.org/3/movie/top_rated?api_key=";
         }
         else {
             url = "";

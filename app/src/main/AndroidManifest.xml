@@ -6,6 +6,7 @@
 
     <application
         android:allowBackup="true"
+        android:networkSecurityConfig="@xml/network_config"
         android:icon="@drawable/launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"

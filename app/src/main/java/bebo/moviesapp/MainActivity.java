@@ -131,13 +131,7 @@ public class MainActivity extends AppCompatActivity implements ImageAdapter.Imag
         outState.putInt("fav", flag);
     }
 
- /*   @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        if (savedInstanceState != null){
-           listState= savedInstanceState.getParcelable("f");
-        }
-    }*/
+
 
     public  int calculateNoOfColumns(Context context) {
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
@@ -255,10 +249,7 @@ return url;
             loadData(sharedPreferences);
         }
 
-        if(listState != null){
 
-            gridLayoutManager.onRestoreInstanceState(listState);
-        }
 
     }
 

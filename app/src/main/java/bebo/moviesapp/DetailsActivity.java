@@ -190,11 +190,11 @@ public class DetailsActivity extends AppCompatActivity implements TrailerAdapter
     }
 
     public String retUrlForTrailer(int id){
-        String urlForTrailer = "https://api.themoviedb.org/3/movie/"+id+"/"+"videos"+"?api_key=";
+        String urlForTrailer = "https://api.themoviedb.org/3/movie/"+id+"/"+"videos"+"?api_key=9210a90684bb5c798a69dcc6f9ba6889";
        return urlForTrailer;
     }
     public String retUrlForٌReviews(int id){
-        String urlForReviews = "https://api.themoviedb.org/3/movie/"+id+"/"+"reviews"+"?api_key=";
+        String urlForReviews = "https://api.themoviedb.org/3/movie/"+id+"/"+"reviews"+"?api_key=9210a90684bb5c798a69dcc6f9ba6889";
         return urlForReviews;
     }
 

@@ -2,13 +2,14 @@ package bebo.moviesapp;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v14.preference.PreferenceFragment;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceManager;
 import android.support.v7.preference.PreferenceScreen;
 
-public class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
+public class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
         addPreferencesFromResource(R.xml.pref_movies);
@@ -36,8 +37,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
         Preference preference = findPreference(s);
-        String value = sharedPreferences.getString(preference.getKey(),"");
-        setpreferencesummary(preference,value);
+        if (null != preference) {
+            if (preference instanceof ListPreference) {
+                String value = sharedPreferences.getString(preference.getKey(), "");
+                setpreferencesummary(preference, value);
+            }
+        }
     }
 
     @Override
